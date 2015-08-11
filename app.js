@@ -22,7 +22,7 @@ weatherApp.config(function($routeProvider) {
 
 
 
-//Controllers HERE
+//Controllers HERE /
 weatherApp.controller('mainController', ['$scope', function($scope) {
 	$scope.greeting = 'hello';
 }]);
