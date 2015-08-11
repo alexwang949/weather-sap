@@ -59,7 +59,7 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 
 	$scope.weatherData = $scope.weatherServiceApi.get({ q: $scope.city, cnt: 2});
 
-	// console.log($scope.weatherData);
+	console.log($scope.weatherData);
 
 
 }]);
