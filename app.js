@@ -17,6 +17,10 @@ weatherApp.config(function($routeProvider) {
 		templateUrl: 'pages/forecast.html',
 		controller: 'forecastController'
 	})
+	.when ('/forecast/:days', {
+		templateUrl: 'pages/forecast.html',
+		controller: 'forecastController'
+	})
 
 });
 
@@ -51,9 +55,13 @@ weatherApp.controller('mainController', ['$scope', 'cityService', function($scop
 
 }]);		
 
-weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource', function($scope, cityService, $resource) {
+weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource', '$routeParams', function($scope, cityService, $resource, $routeParams) {
 
 	$scope.city = cityService.city;
+
+	//I put the || 2 in order to provide a default value because I allowed a route that
+	//didn't pass :days
+	$scope.days = $routeParams.days || '2';
 
 	//in order to make the API call, I "injected" the dependency "$resource". $resource is like
 	//HTTParty for ruby. It wraps up the "$http" service so that it will return an object that can 
@@ -61,7 +69,7 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 	$scope.weatherServiceApi = $resource("http://api.openweathermap.org/data/2.5/forecast/daily", 
 		{ callback: "JSON_CALLBACK" }, { get: { method: "JSONP" }});
 
-	$scope.weatherData = $scope.weatherServiceApi.get({ q: $scope.city, cnt: 2});
+	$scope.weatherData = $scope.weatherServiceApi.get({ q: $scope.city, cnt: $scope.days});
 
 	//this function converts the Kelvin temperature from the API into
 	//fahrenheit
@@ -74,6 +82,6 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 		return new Date(date * 1000);
 	}
 
-
 }]);
+//END
 

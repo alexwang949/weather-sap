@@ -1,5 +1,15 @@
-Forecast for {{ city }} 
+<a href="#/">Back to Search</a>
 
+Forecast for {{ city }} 
+<hr/>
+<!-- Adding CSS classes to 'active' state selections.
+	I used the 'ng-class' directive. It takes an object, and
+	a css class followed by the condition that must be met in order to 
+	add that class. 
+	*** NOTE: the '2' must be a STRING, NOT an Integer/Number, because the routeParams
+	return a STRING ***
+-->
+Days: <a href="#/forecast/2" ng-class="{ 'bg-primary': days=== '2' }">2</a> | <a href="#/forecast/5" ng-class="{ 'bg-primary': days=== '5' }">5</a> | <a href="#/forecast/7" ng-class="{ 'bg-primary': days=== '7' }">7</a>
 <div ng-repeat="w in weatherData.list">
 	<div class="row">
 		<div class="col-mid-12">
