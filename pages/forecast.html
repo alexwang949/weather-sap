@@ -9,7 +9,7 @@ Forecast for {{ city }}
 	*** NOTE: the '2' must be a STRING, NOT an Integer/Number, because the routeParams
 	return a STRING ***
 -->
-Days: <span ng-repeat="d in ['2', '5', '7']"><a href="#/forecast/{{ d }}" ng-class="{ 'bg-primary': days=== {{ d }} }">{{ d }}</a>|</span>
+<span class="days">Days:</span><span class="weather-dates" ng-repeat="d in ['2', '5', '7']"><a href="#/forecast/{{ d }}" ng-class="{ 'circle': days === '{{ d }}' }">{{ d }}</a></span>
 <!-- <a href="#/forecast/2" ng-class="{ 'bg-primary': days=== '2' }">2</a> | <a href="#/forecast/5" ng-class="{ 'bg-primary': days=== '5' }">5</a> | <a href="#/forecast/7" ng-class="{ 'bg-primary': days=== '7' }">7</a> -->
 <div ng-repeat="w in weatherData.list">
 	<div class="row">
@@ -19,9 +19,30 @@ Days: <span ng-repeat="d in ['2', '5', '7']"><a href="#/forecast/{{ d }}" ng-cla
 					<h3 class="panel-title"> {{ convertDate(w.dt) | date: 'MMM d, y'  }} </h3>
 				</div>
 				<div class="panel-body"> 
-					Daytime Temperature: {{ convertToFahrenheit(w.temp.day) }} 
+					Daytime Temperature: {{ convertToFahrenheit(w.temp.day) }} <br/>
+					Evening Temperature: {{ convertToFahrenheit(w.temp.eve) }}
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<style type="text/css">
+
+	.days {
+		font-size: 2em;
+	}
+	.weather-dates {
+		font-size: 2em;
+		margin: 1em;
+	}
+	.circle {
+		display: inline-block;
+		width: 2em;
+		height: 2em;
+		background: red;
+		-moz-border-radius: 1em;
+		-webkit-border-radius: 1em;
+		border-radius: 1em;
+	}
+</style>
