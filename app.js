@@ -61,7 +61,7 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 
 	//I put the || 2 in order to provide a default value because I allowed a route that
 	//didn't pass :days
-	$scope.days = $routeParams.days || 2;
+	$scope.days = $routeParams.days || '2';
 
 	//in order to make the API call, I "injected" the dependency "$resource". $resource is like
 	//HTTParty for ruby. It wraps up the "$http" service so that it will return an object that can 
@@ -82,7 +82,6 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 		return new Date(date * 1000);
 	}
 
-
-
 }]);
+//END
 
