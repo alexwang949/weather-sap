@@ -28,7 +28,7 @@ weatherApp.config(function($routeProvider) {
 
 //SERVICES
 
-//this service is a singleton, and provides a method to spread this data object through the app,
+//Services are 'singletons', and provide a method to spread a data object through the app,
 //across all controllers.
 
 weatherApp.service('cityService', function() {
