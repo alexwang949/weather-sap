@@ -4,7 +4,7 @@ var weatherApp = angular.module('weatherApp', ['ngRoute', 'ngResource']);
 //views: home page + forecast page
 //need: 2 pgs, routing, 2 controllers
 
-//Routes HERE
+//ROUTES
 weatherApp.config(function($routeProvider) {
 	
 	$routeProvider
@@ -20,7 +20,9 @@ weatherApp.config(function($routeProvider) {
 
 });
 
-//Services HERE
+//END
+
+//SERVICES
 
 //this service is a singleton, and provides a method to spread this data object through the app,
 //across all controllers.
@@ -31,9 +33,11 @@ weatherApp.service('cityService', function() {
 
 });
 
+//END
 
 
-//Controllers HERE /
+
+//CONTROLLERS
 weatherApp.controller('mainController', ['$scope', 'cityService', function($scope, cityService) {
 
 	$scope.city = cityService.city;
@@ -59,7 +63,16 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 
 	$scope.weatherData = $scope.weatherServiceApi.get({ q: $scope.city, cnt: 2});
 
-	console.log($scope.weatherData);
+	//this function converts the Kelvin temperature from the API into
+	//fahrenheit
+	$scope.convertToFahrenheit = function(degK) {
+		return Math.round((1.8 * (degK - 273)) + 32);
+	};
+
+	//this function converts date from API to be more accurate
+	$scope.convertDate = function(date) {
+		return new Date(date * 1000);
+	}
 
 
 }]);
