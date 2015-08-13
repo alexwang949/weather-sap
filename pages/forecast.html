@@ -9,40 +9,87 @@ Forecast for {{ city }}
 	*** NOTE: the '2' must be a STRING, NOT an Integer/Number, because the routeParams
 	return a STRING ***
 -->
-<span class="days">Days:</span><span class="weather-dates" ng-repeat="d in ['2', '5', '7']"><a href="#/forecast/{{ d }}" ng-class="{ 'circle': days === '{{ d }}' }">{{ d }}</a></span>
+<span id="days">Days:</span>
+
+<div class="dates" ng-repeat="d in ['2', '5', '7']">
+	<a class="weather-dates" href="#/forecast/{{ d }}" ng-class="{ 'selected': days === '{{ d }}' }">
+		<!-- <div class="weather-dates"> -->
+			{{ d }}
+<!-- 		</div> -->
+	</a>
+</div>
 <!-- <a href="#/forecast/2" ng-class="{ 'bg-primary': days=== '2' }">2</a> | <a href="#/forecast/5" ng-class="{ 'bg-primary': days=== '5' }">5</a> | <a href="#/forecast/7" ng-class="{ 'bg-primary': days=== '7' }">7</a> -->
-<div ng-repeat="w in weatherData.list">
-	<div class="row">
-		<div class="col-mid-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"> {{ convertDate(w.dt) | date: 'MMM d, y'  }} </h3>
-				</div>
-				<div class="panel-body"> 
-					Daytime Temperature: {{ convertToFahrenheit(w.temp.day) }} <br/>
-					Evening Temperature: {{ convertToFahrenheit(w.temp.eve) }}
+<div class="list-body">
+	<div ng-repeat="w in weatherData.list">
+		<div class="row">
+			<div class="col-mid-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"> {{ convertDate(w.dt) | date: 'MMM d, y'  }} </h3>
+					</div>
+					<div class="panel-body"> 
+						Daytime Temperature: {{ convertToFahrenheit(w.temp.day) }} <br/>
+						Evening Temperature: {{ convertToFahrenheit(w.temp.eve) }}
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
+
 <style type="text/css">
 
-	.days {
+	.list-body {
+		box-sizing: border-box;
+	}
+
+	#days {
 		font-size: 2em;
+		/*line-height: 3em;*/
+	}
+	.selected {
+		border-color: black !important;
+		color: black !important;
+	}
+	.dates {
+		display: inline-block;
 	}
 	.weather-dates {
+		color: gray;
 		font-size: 2em;
-		margin: 1em;
+		display: inline-block;
+		width: 2em;
+		height: 2em;
+		/*background: red;*/
+		border-style: solid;
+		border-color: gray;
+		-moz-border-radius: 1em;
+		-webkit-border-radius: 1em;
+		border-radius: 1em;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 2em;
+		margin: .5em;
+
+		-o-moz-transition: all .3s ease-out;;
+		-o-webkit-transition: all .3s ease-out;;
+		-o-transition: all .3s ease-out;;
+		transition: all .3s ease-out;
+	}
+
+	.weather-dates:hover {
+		text-decoration: none;
+		color: black;
+		border-color: black;
 	}
 	.circle {
-		display: inline-block;
+/*		display: inline-block;
 		width: 2em;
 		height: 2em;
 		background: red;
 		-moz-border-radius: 1em;
 		-webkit-border-radius: 1em;
-		border-radius: 1em;
+		border-radius: 1em;*/
 	}
 </style>
