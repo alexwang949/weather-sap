@@ -53,6 +53,8 @@ weatherApp.controller('mainController', ['$scope', 'cityService', function($scop
 		cityService.city = $scope.city
 	});
 
+	$scope.characters = 3;
+
 
 }]);	
 
