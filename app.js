@@ -23,37 +23,40 @@ weatherApp.config(function($routeProvider) {
 	})
 
 });
-
-//END
+//END ROUTES
 
 //SERVICES
 
 //Services are 'singletons', and provide a method to spread a data object through the app,
 //across all controllers.
-
 weatherApp.service('cityService', function() {
 
-	this.city = 'New York, NY';
+	this.city = '';
+	//this.city = '';
 
 });
 
-//END
+//END SERVICES
 
 
 
 //CONTROLLERS
 weatherApp.controller('mainController', ['$scope', 'cityService', function($scope, cityService) {
 
+	//declare a 'city' object and set it equal to cityService.city
+	//why? because cityService.city can be accessed/injected by all controllers
 	$scope.city = cityService.city;
 
 	//watch for any changes in 'city' model/object, update any changes by 
 	//re-assigning the cityService.city object 
+	$scope.characters = 3;
 	$scope.$watch('city', function() {
 		cityService.city = $scope.city
 	});
 
 
-}]);		
+
+}]);	
 
 weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource', '$routeParams', function($scope, cityService, $resource, $routeParams) {
 
@@ -71,6 +74,8 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 
 	$scope.weatherData = $scope.weatherServiceApi.get({ q: $scope.city, cnt: $scope.days});
 
+	// console.log($scope.weatherData);
+
 	//this function converts the Kelvin temperature from the API into
 	//fahrenheit
 	$scope.convertToFahrenheit = function(degK) {
@@ -83,5 +88,5 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 	}
 
 }]);
-//END
+//END CONTROLLERS
 
