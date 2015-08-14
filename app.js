@@ -92,14 +92,17 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 
 //DIRECTIVES
 
+//weatherReport directive was created in order to abstract away some code in the view,
+//so we isolate the scope and declare what values/fx's this directive needs access to in the 
+//view(forecast.html)
 weatherApp.directive("weatherReport", function() {
 	return {
-		restrict: 'E',
+		restrict: 'E', //restricts to html
 		templateUrl: 'directives/weatherReport.html',
-		replace: true,
-		scope: {
-			
-		}
+		replace: true
+		// scope: {
+
+		// }
 	}
 })
 
