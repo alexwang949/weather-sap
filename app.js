@@ -31,7 +31,7 @@ weatherApp.config(function($routeProvider) {
 //across all controllers.
 weatherApp.service('cityService', function() {
 
-	this.city = 'New York, NY';
+	this.city = '';
 	//this.city = '';
 
 });
@@ -49,11 +49,11 @@ weatherApp.controller('mainController', ['$scope', 'cityService', function($scop
 
 	//watch for any changes in 'city' model/object, update any changes by 
 	//re-assigning the cityService.city object 
+	$scope.characters = 3;
 	$scope.$watch('city', function() {
 		cityService.city = $scope.city
 	});
 
-	$scope.characters = 3;
 
 
 }]);	
