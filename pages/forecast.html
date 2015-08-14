@@ -23,7 +23,8 @@ Forecast for {{ city }}
 	<div ng-repeat="w in weatherData.list">
 		<div class="row">
 			<div class="col-mid-12">
-				<div class="panel panel-default">
+
+<!-- 	**Refactored into Directive			<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title"> {{ convertDate(w.dt) | date: 'MMM d, y'  }} </h3>
 					</div>
@@ -31,7 +32,7 @@ Forecast for {{ city }}
 						Daytime Temperature: {{ convertToFahrenheit(w.temp.day) }} <br/>
 						Evening Temperature: {{ convertToFahrenheit(w.temp.eve) }}
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

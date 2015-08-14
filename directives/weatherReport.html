@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"> {{ convertDate(w.dt) | date: 'MMM d, y'  }} </h3>
+	</div>
+	<div class="panel-body"> 
+			Daytime Temperature: {{ convertToFahrenheit(w.temp.day) }} <br/>
+			Evening Temperature: {{ convertToFahrenheit(w.temp.eve) }}
+	</div>
+</div>

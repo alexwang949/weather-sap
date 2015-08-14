@@ -90,3 +90,16 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 }]);
 //END CONTROLLERS
 
+//DIRECTIVES
+
+weatherApp.directive("weatherReport", function() {
+	return {
+		restrict: 'E',
+		templateUrl: 'directives/weatherReport.html',
+		replace: true,
+		scope: {
+			
+		}
+	}
+})
+
