@@ -31,7 +31,7 @@ weatherApp.config(function($routeProvider) {
 //across all controllers.
 weatherApp.service('cityService', function() {
 
-	this.city = '';
+	this.city = 'New York, NY';
 	//this.city = '';
 
 });
@@ -83,7 +83,7 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 	};
 
 	//this function converts date from API to be more accurate
-	$scope.convertDate = function(date) {
+	$scope.convertToDate = function(dt) {
 		return new Date(date * 1000);
 	}
 
@@ -94,15 +94,21 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 
 //weatherReport directive was created in order to abstract away some code in the view,
 //so we isolate the scope and declare what values/fx's this directive needs access to in the 
-//view(forecast.html)
+//view(forecast.html) by declaring custom attributes in the view that's part of the 'weatherReport' directive.
 weatherApp.directive("weatherReport", function() {
-	return {
-		restrict: 'E', //restricts to html
-		templateUrl: 'directives/weatherReport.html',
-		replace: true
-		// scope: {
-
-		// }
-	}
-})
+   return {
+       restrict: 'E',
+       templateUrl: 'directives/weatherReport.html',
+       replace: true,
+       scope: {
+           weatherDay: "=",
+           convertToStandard: "&",
+           convertToDate: "&",
+           dateFormat: "@"
+       }
+   }
+});
+ //in the view, I need access to the "w" variable in the iteration/loop. Because 
+							//each "w" is an object, not just text, I need to use the "=" instead of "@".
+							//So "weatherDay" points to "w".
 

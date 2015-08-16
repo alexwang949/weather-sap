@@ -23,9 +23,12 @@ Forecast for {{ city }}
 	<div ng-repeat="w in weatherData.list">
 		<div class="row">
 			<div class="col-mid-12">
-				<weather-report>
-				</weather-report>
-
+            <weather-report weather-day="w" convert-to-standard="convertToFahrenheit(daytimeTemp)" convert-to-date="convertToDate(dt)" date-format="MMMM d, y"></weather-report>
+			</div>
+		</div>
+	</div>
+</div>
+				<!-- note: "daytimeTemp" does not have to match the argument name in the controller. -->
 <!-- 	**Refactored into Directive			<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title"> {{ convertDate(w.dt) | date: 'MMM d, y'  }} </h3>
@@ -35,10 +38,6 @@ Forecast for {{ city }}
 						Evening Temperature: {{ convertToFahrenheit(w.temp.eve) }}
 					</div>
 				</div> -->
-			</div>
-		</div>
-	</div>
-</div>
 
 
 <style type="text/css">
