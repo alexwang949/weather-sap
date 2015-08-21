@@ -31,7 +31,7 @@ weatherApp.config(function($routeProvider) {
 //across all controllers.
 weatherApp.service('cityService', function() {
 
-	this.city = '';
+	this.city = 'New York, NY';
 	//this.city = '';
 
 });
@@ -74,7 +74,7 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 
 	$scope.weatherData = $scope.weatherServiceApi.get({ q: $scope.city, cnt: $scope.days});
 
-	// console.log($scope.weatherData);
+	console.log($scope.weatherData);
 
 	//this function converts the Kelvin temperature from the API into
 	//fahrenheit
@@ -83,10 +83,47 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 	};
 
 	//this function converts date from API to be more accurate
-	$scope.convertDate = function(date) {
-		return new Date(date * 1000);
+	$scope.convertToDate = function(dt) {
+		return new Date(dt * 1000);
 	}
+    
 
 }]);
 //END CONTROLLERS
+
+//DIRECTIVES
+
+//weatherReport directive was created in order to abstract away some code in the view,
+//so we isolate the scope and declare what values/fx's this directive needs access to in the 
+//view(forecast.html) by declaring custom attributes in the view that's part of the 'weatherReport' directive.
+weatherApp.directive("weatherReport", function() {
+   return {
+       restrict: 'E',
+       templateUrl: 'directives/weatherReport.html',
+       replace: true,
+       scope: {
+           weatherDay: "=",
+           convertToStandard: "&",
+           convertToDate: "&",
+           dateFormat: "@"
+       }
+   }
+});
+
+// weatherApp.directive("weatherReport", function() {
+//    return {
+//        restrict: 'E',
+//        templateUrl: 'directives/weatherReport.html',
+//        replace: true,
+//        scope: {
+//            weatherDay: "=",
+//            convertToStandard: "&",
+//            convertToDate: "&",
+//            dateFormat: "@"
+//        }
+//    }
+// });
+ //in the view, I need access to the "w" variable in the iteration/loop. Because 
+							//each "w" is an object, not just text, I need to use the "=" instead of "@".
+							//So "weatherDay" points to "w".
 
