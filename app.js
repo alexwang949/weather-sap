@@ -84,8 +84,9 @@ weatherApp.controller('forecastController', ['$scope', 'cityService', '$resource
 
 	//this function converts date from API to be more accurate
 	$scope.convertToDate = function(dt) {
-		return new Date(date * 1000);
+		return new Date(dt * 1000);
 	}
+    
 
 }]);
 //END CONTROLLERS
@@ -108,6 +109,20 @@ weatherApp.directive("weatherReport", function() {
        }
    }
 });
+
+// weatherApp.directive("weatherReport", function() {
+//    return {
+//        restrict: 'E',
+//        templateUrl: 'directives/weatherReport.html',
+//        replace: true,
+//        scope: {
+//            weatherDay: "=",
+//            convertToStandard: "&",
+//            convertToDate: "&",
+//            dateFormat: "@"
+//        }
+//    }
+// });
  //in the view, I need access to the "w" variable in the iteration/loop. Because 
 							//each "w" is an object, not just text, I need to use the "=" instead of "@".
 							//So "weatherDay" points to "w".
