@@ -41,7 +41,7 @@ weatherApp.service('cityService', function() {
 
 
 //CONTROLLERS
-weatherApp.controller('mainController', ['$scope', 'cityService', function($scope, cityService) {
+weatherApp.controller('mainController', ['$scope', 'cityService', '$location', function($scope, cityService, $location) {
 
 	//declare a 'city' object and set it equal to cityService.city
 	//why? because cityService.city can be accessed/injected by all controllers
@@ -50,11 +50,14 @@ weatherApp.controller('mainController', ['$scope', 'cityService', function($scop
 	//watch for any changes in 'city' model/object, update any changes by 
 	//re-assigning the cityService.city object 
 	$scope.characters = 3;
+
 	$scope.$watch('city', function() {
-		cityService.city = $scope.city
+		cityService.city = $scope.city;
 	});
 
-
+    $scope.submit = function() {
+        $location.path("/forecast");
+    };
 
 }]);	
 
